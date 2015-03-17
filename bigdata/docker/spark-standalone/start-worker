@@ -1,0 +1,13 @@
+
+if [ $# -lt 1 ]; then
+ echo -e "\033[31;1m Usage: ./start-master <spark-master-ip> \033[0m"
+ exit 0
+fi
+
+docker run --rm --net=host -P \
+   -v /var/log/sparkdocker/worker:/opt/spark/logs \
+   terminus/spark-standalone\
+   /bin/bash /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$1:7077
+
+
+

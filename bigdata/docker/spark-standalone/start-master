@@ -1,0 +1,19 @@
+
+
+IP=`ifconfig eth0 | grep 'inet addr:' | awk '{print $2}' | sed s/addr://`
+echo -e "\033[31;1m Spark CONTAINER_IP is:$IP \033[0m"
+export SPARK_LOCAL_IP=$IP
+export SPARK_PUBLIC_DNS=$IP
+
+IP_IN=$1
+
+if [ $# -gt 0 ]; then
+ echo -e "\033[32;1m Spark start with IP: $IP_IN \033[0m"
+fi
+
+docker run --rm --net=host -P \
+   -v /var/log/sparkdocker/master:/opt/spark/logs \
+   terminus/spark-standalone \
+  /bin/bash /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master -i ${IP_IN:=$IP}
+
+

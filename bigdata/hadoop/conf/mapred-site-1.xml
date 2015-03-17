@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- Put site-specific property overrides in this file. -->
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>wg-mac:9001</value>
+  </property>
+  <property>
+    <name>mapred.map.tasks</name>
+    <value>20</value>
+  </property>
+  <property>
+    <name>mapred.reduce.tasks</name>
+    <value>4</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>wg-mac:10020</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>wg-mac:19888</value>
+  </property>
+</configuration>
