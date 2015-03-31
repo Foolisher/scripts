@@ -25,8 +25,6 @@
 # The java implementation to use.
 export HADOOP_HOME=/usr/local/hadoop
 
-export JAVA_HOME=${JAVA_HOME:='/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home'}
-
 if [ ! -d ${JAVA_HOME} ]; then
   export JAVA_HOME=/usr/jdk
 fi
