@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# for T in `cat tables`; do ./import-one-table-to-hive.sh $T; done;
+# for T in `cat tables`; do ./import-one-table-to-hive.sh $T; done;  15/04/06 12:10:10
 
 TABLE=$1
 export SQOOP_HOME=/usr/local/sqoop
 export HADOOP_HOME=/usr/local/hadoop
 export HIVE_HOME=/usr/local/hive
 ${SQOOP_HOME}/bin/sqoop import --hive-import --hive-overwrite --hive-table ${TABLE}  \
-    --connect jdbc:mysql://10.211.55.9:3306/groupon --username wanggen --password wanggen \
+    --connect "jdbc:mysql://10.211.55.9:3306/groupon?useUnicode=true&characterEncoding=utf-8&user=wanggen&password=wanggen" \
     --table ${TABLE} \
     --delete-target-dir \
     -m 1 \
