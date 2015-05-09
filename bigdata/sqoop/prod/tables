@@ -88,9 +88,3 @@ groupon_summary_users
 groupon_user_extras
 groupon_user_vat_invoices
 mocked_alipay_trans
-report_copartner_info
-report_copartner_money
-schema_versions
-temp_copartner_info_id
-temp_id
-temp_sku_id

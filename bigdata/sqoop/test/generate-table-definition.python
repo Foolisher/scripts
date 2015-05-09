@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+
+
+os.system("""
+sql=''
+for T in `cat tables`; do
+	sql="select '\\ncreate table $T'; desc $T; $sql"
+done
+/usr/local/hive/bin/hive -e "$sql" > table_desc.txt
+
+""")
+
+tableMap = {}
+with open('table_desc.txt', mode='r') as table_file:
+    for line in table_file.readlines():
+        line = line.strip().replace('\t', ' ')
+        if line is not '':
+            if line.startswith('create table'):
+                table = line.split(' ')[2].strip()
+            elif table is not '':
+                if table not in tableMap:
+                    tableMap[table] = ["   "+line]
+                else:
+                    tableMap[table].append("   "+line)
+        else:
+            table = ''
+
+
+script = '\n'
+for table, fields in tableMap.items():
+    script += 'drop table %s;' \
+              '\ncreate table %s(\n' % (table, table)
+    script_0 = ',\n'.join(fields)
+    script += script_0
+    if script_0.__contains__('created_at'):
+        script += ')\npartitioned by(date string);\n\n'
+    else:
+        script += ');\n\n'
+
+
+with open('hive-tables.sql', mode='w') as table_script:
+    table_script.write(script)

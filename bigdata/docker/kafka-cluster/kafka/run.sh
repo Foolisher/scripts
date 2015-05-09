@@ -9,4 +9,4 @@ if [ "$KAFKA_HEAP_OPTS" != "" ]; then
     sed -r -i "s/^(export KAFKA_HEAP_OPTS)=\"(.*)\"/\1=\"$KAFKA_HEAP_OPTS\"/g" $KAFKA_HOME/bin/kafka-server-start.sh
 fi
 
-$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+${KAFKA_HOME}/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties

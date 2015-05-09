@@ -10,4 +10,4 @@ $SPARK_HOME/bin/spark-submit \
   --driver-memory 256m \
   --class io.terminus.daos.core.Bootstrap \
   $SPARK_HOME/workspace/daos/daos-all.jar \
-  "local[2]" 10.0.0.8
+  wg-linux groupon
